@@ -2,7 +2,7 @@
 
 namespace Smartwyre.DeveloperTest.Types
 {
-    public class MakePaymentRequest
+    public class MakePaymentCommand
     {
         public string CreditorAccountNumber { get; set; }
 

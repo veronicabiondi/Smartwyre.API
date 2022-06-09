@@ -1,24 +1,40 @@
 # Smartwyre Developer Test Instructions
 
-In the 'PaymentService.cs' file you will find a method for making a payment. At a high level the steps for making a payment are:
+Solutions is constitued by 4 Projects
 
- 1. Lookup the account the payment is being made from.
- 2. Check that the account is in a valid state to make the payment.
- 3. Deduct the payment amount from the account’s balance and update the account in the database.
+Smartwyre.API
+Smartwyre.DeveloperTest
+Smartwyre.DeveloperTest.Runner
+Smartwyre.DeveloperTest.Tests
 
-What we’d like you to do is refactor the code with the following things in mind:
+Beforew you run te API:
 
- - Adherence to SOLID principals
- - Testability
- - Readability
+Before anything, please seed your local database. Open Smartwyre.DeveloperTest.Runner and execute the following commands on your Package manager Console:
 
-We’d also like you to 
- - Add some unit tests to the Smartwyre.DeveloperTest.Tests project to show how you would test the code that you’ve produced 
- - Run the PaymentService from the Smartwyre.DeveloperTest.Runner console application
+add-migrations "v1"
+update-database
 
-The only specific 'rules' are:
+(*)You might need to update your connection string. It's using te default connection (  private const string connectionString = "Server=localhost\\SQLEXPRESS;Initial Catalog=Smartwyre;Trusted_Connection=True;";)
 
-- The solution should build
-- The tests should all pass
+For the API:
 
-You are free to use any frameworks/NuGet packages that you see fit. You should plan to spend around 1 hour completing the exercise.
+Given an account with balance of 10000m:
+
+Request:
+{
+  "creditorAccountNumber": "123456",
+  "debtorAccountNumber": "123456",
+  "amount": 2,
+  "paymentDate": "2022-06-09T15:30:30.740Z",
+  "paymentScheme": 0
+}
+
+Response:
+{
+  "errors": [],
+  "statusCode": 200,
+  "value": {
+    "success": true
+  },
+  "isSuccessful": true
+}
